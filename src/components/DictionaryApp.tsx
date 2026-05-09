@@ -70,13 +70,13 @@ export default function DictionaryApp({ data }: DictionaryAppProps) {
       {/* Controls: Search and Sort */}
       <div className="flex flex-col md:flex-row gap-6 mb-8 justify-between items-start md:items-center bg-canvas border border-hairline-soft rounded-xxxl p-6 shadow-sm">
         {/* Search */}
-        <div className="relative w-full md:max-w-md">
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-            <Search className="h-5 w-5 text-steel" />
+        <div className="relative w-full md:max-w-md group">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none transition-colors group-focus-within:text-fb-blue">
+            <Search className="h-5 w-5 text-steel transition-colors group-focus-within:text-fb-blue" />
           </div>
           <input
             type="text"
-            className="w-full bg-surface-soft text-ink rounded-full py-3 pl-11 pr-4 border border-hairline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors text-base"
+            className="w-full bg-surface-soft text-ink rounded-full py-3 pl-11 pr-4 border border-hairline focus:outline-none focus:border-fb-blue focus:ring-1 focus:ring-fb-blue transition-all duration-300 focus:bg-canvas focus:shadow-md text-base"
             placeholder="Cari berdasarkan kode, nama, deskripsi..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -91,10 +91,10 @@ export default function DictionaryApp({ data }: DictionaryAppProps) {
               <button
                 key={field}
                 onClick={() => handleSort(field)}
-                className={`flex items-center px-4 py-2 rounded-full text-sm font-bold border transition-colors whitespace-nowrap ${
+                className={`flex items-center px-4 py-2 rounded-full text-sm font-bold border transition-all duration-200 whitespace-nowrap active:scale-95 ${
                   sortField === field
-                    ? "bg-ink-deep text-canvas border-ink-deep"
-                    : "bg-canvas text-ink border-hairline hover:border-ink-deep"
+                    ? "bg-ink-deep text-canvas border-ink-deep hover:bg-charcoal hover:border-charcoal"
+                    : "bg-canvas text-ink border-border-hairline hover:border-ink-deep hover:bg-surface-soft"
                 }`}
               >
                 {field}
@@ -113,7 +113,7 @@ export default function DictionaryApp({ data }: DictionaryAppProps) {
       {/* Data List */}
       <div className="space-y-6">
         {sortedData.length === 0 ? (
-          <div className="py-24 text-center border border-hairline-soft rounded-xxxl bg-canvas">
+          <div className="py-24 text-center border border-hairline-soft rounded-xxxl bg-canvas opacity-0 animate-fade-in-up" style={{ animationDelay: '100ms' }}>
             <div className="w-16 h-16 bg-surface-soft rounded-full flex items-center justify-center mx-auto mb-6">
               <FileText className="w-8 h-8 text-steel" />
             </div>
@@ -122,7 +122,11 @@ export default function DictionaryApp({ data }: DictionaryAppProps) {
           </div>
         ) : (
           sortedData.map((item, index) => (
-            <div key={index} className="bg-canvas border border-hairline-soft rounded-xl p-6 md:p-8 hover:shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition-shadow">
+            <div 
+              key={index} 
+              className="bg-canvas border border-hairline-soft rounded-xl p-6 md:p-8 hover:shadow-[0_12px_32px_rgba(20,22,26,0.08)] hover:-translate-y-1 hover:border-hairline transition-all duration-300 opacity-0 animate-fade-in-up"
+              style={{ animationDelay: `${Math.min(index * 50, 500)}ms` }}
+            >
               
               <div className="flex flex-col md:flex-row gap-8">
                 
