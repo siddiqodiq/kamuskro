@@ -18,7 +18,7 @@ export interface KamusEntry {
   "Definisi RO": string;
   "CONTOH DAN REFERENSI NOMENKLATUR RO": string;
   "KARAKTERISTIK RO": string;
-  " BESARAN (Rp.)": string;
+  "BESARAN (Rp.)": string;
 }
 
 export function loadKamusData(): KamusEntry[] {
@@ -33,6 +33,7 @@ export function loadKamusData(): KamusEntry[] {
       const results = Papa.parse<KamusEntry>(fileContent, {
         header: true,
         skipEmptyLines: true,
+        transformHeader: (header) => header.trim(),
       });
       return results.data;
     }
