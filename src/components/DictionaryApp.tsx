@@ -19,13 +19,10 @@ export default function DictionaryApp({ data }: DictionaryAppProps) {
   const filteredData = useMemo(() => {
     return data.filter(item => {
       const query = searchQuery.toLowerCase();
-      return (
-        (item["KRO"] && item["KRO"].toLowerCase().includes(query)) ||
-        (item["Definisi KRO"] && item["Definisi KRO"].toLowerCase().includes(query)) ||
-        (item["Definisi RO"] && item["Definisi RO"].toLowerCase().includes(query)) ||
-        (item["CONTOH DAN REFERENSI NOMENKLATUR RO"] && item["CONTOH DAN REFERENSI NOMENKLATUR RO"].toLowerCase().includes(query)) ||
-        (item["KODE RO*"] && item["KODE RO*"].toLowerCase().includes(query)) ||
-        (item["Kode  KRO (PN)"] && item["Kode  KRO (PN)"].toLowerCase().includes(query))
+      if (!query) return true;
+      
+      return Object.values(item).some(val => 
+        val && String(val).toLowerCase().includes(query)
       );
     });
   }, [data, searchQuery]);
