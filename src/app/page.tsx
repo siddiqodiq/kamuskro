@@ -60,7 +60,7 @@ export default function Home() {
                 href="/kerangka-regulasi"
                 className="inline-flex items-center justify-center rounded-full bg-ink-button px-7 py-3 text-sm font-bold text-on-ink-button transition-transform duration-200 hover:bg-charcoal active:scale-95"
               >
-                Masuk Kerangka Regulasi
+                Buka Kamus
               </Link>
               <a
                 href="#kategori"

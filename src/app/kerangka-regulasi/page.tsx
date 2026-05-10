@@ -23,7 +23,7 @@ export default function KerangkaRegulasiPage() {
             href="/"
             className="inline-flex items-center justify-center rounded-full border-2 border-ink-deep px-6 py-2 text-sm font-bold text-ink-deep"
           >
-            Kembali ke Beranda
+            Beranda
           </Link>
         </div>
       </section>
